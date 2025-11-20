@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mis Mascotas 🐾</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <%- include("partials/header", { usuario, rol }) %>
+
+    <div class="container">
+      <h2>🐾 Mis mascotas registradas</h2>
+
+      <% if (registros.length === 0) { %>
+      <p>
+        No tienes mascotas confirmadas aún. Una vez que tu pago sea validado por
+        el administrador, aparecerán aquí 🐶💖
+      </p>
+      <% } else { %>
+      <ul class="lista-datos">
+        <% registros.forEach(m => { %>
+        <li>
+          <strong>Nombre:</strong> <%= m.nombreMascota %><br />
+          <strong>Dueño:</strong> <%= m.nombreDueno %><br />
+          <strong>Teléfono:</strong> <%= m.telefonoDueno %><br />
+          <strong>Dirección:</strong> <%= m.direccionDueno %><br />
+          <a href="/qr/<%= m._id %>.png" download class="btn-main"
+            >Descargar QR</a
+          >
+        </li>
+        <% }) %>
+      </ul>
+      <% } %>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Datos de la Mascota</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <%- include("partials/header", { usuario, rol }) %>
+
+    <div class="container">
+      <h1>🐾 Datos de la Mascota</h1>
+      <p class="id">ID único: <%= mascota.idUnico %></p>
+
+      <div class="info">
+        <p><strong>Mascota:</strong> <%= mascota.nombreMascota %></p>
+        <p><strong>Dueño:</strong> <%= mascota.dueñoNombre %></p>
+        <p><strong>Teléfono:</strong> <%= mascota.telefono %></p>
+        <p><strong>Dirección:</strong> <%= mascota.direccion %></p>
+        <p><strong>Email:</strong> <%= mascota.email %></p>
+        <p><strong>Talla:</strong> <%= mascota.talla %></p>
+        <p><strong>Precio:</strong> $<%= mascota.precio %> MXN</p>
+      </div>
+
+      <div class="qr">
+        <h3>QR generado</h3>
+        <img src="<%= mascota.qrCode %>" alt="Código QR" />
+      </div>
+
+      <footer>
+        <p>
+          Este código confirma el registro de tu mascota en Huellitas con Causa
+          🐶🐱
+        </p>
+      </footer>
+    </div>
+  </body>
+  <%- include("partials/footer") %>
+</html>

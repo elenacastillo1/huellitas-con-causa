@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Panel de administración - Huellitas con Causa</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <%- include("partials/header", { usuario, rol }) %>
+
+    <div class="container">
+      <!-- Encabezado con saludo y fecha -->
+      <h2>📋 Panel de administración</h2>
+      <p>
+        Bienvenida, <strong><%= usuario %></strong>. Hoy es <%= new
+        Date().toLocaleDateString() %>.
+      </p>
+
+      <!-- Tabla de registros -->
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Mascota</th>
+            <th>Dueño</th>
+            <th>Teléfono</th>
+            <th>Talla</th>
+            <th>Precio</th>
+            <th>ID único</th>
+            <th>QR</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% registros.forEach(r => { %>
+          <tr class="<%= r.confirmado ? 'confirmado' : '' %>">
+            <td><%= r.fecha.toLocaleDateString() %></td>
+            <td><%= r.nombreMascota %></td>
+            <td><%= r.nombreDueno %></td>
+            <td><%= r.telefonoDueno %></td>
+            <td><%= r.talla %></td>
+            <td>$<%= r.precio %> MXN</td>
+            <td><%= r._id %></td>
+            <td>
+              <a
+                href="/qr/<%= r._id %>.png"
+                download
+                class="btn-tabla btn-descargar"
+                >⬇️ Descargar QR</a
+              >
+            </td>
+            <td>
+              <% if (r.confirmado) { %>
+              <span class="estado-confirmado">✔️ Confirmado</span>
+              <% } else { %>
+              <form action="/admin/confirmar/<%= r._id %>" method="POST">
+                <button type="submit" class="btn-tabla btn-confirmar">
+                  💳 Confirmar pago
+                </button>
+              </form>
+              <% } %>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+
+    <%- include("partials/footer") %>
+  </body>
+</html>

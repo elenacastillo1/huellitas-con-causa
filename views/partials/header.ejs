@@ -1,0 +1,18 @@
+<header class="header">
+  <h1>🐾 Huellitas con Causa</h1>
+  <nav>
+    <a href="/tienda">Tienda</a>
+
+    <% if (rol === "usuario") { %>
+    <a href="/usuario/mis-mascotas" class="btn-main">Ver mascotas</a>
+    <% } %> <% if (rol === "admin") { %>
+    <a href="/admin" class="btn-main">Panel Admin</a>
+    <% } %> <% if (rol === "usuario" || rol === "admin") { %>
+    <span>Bienvenida, <%= usuario %></span>
+    <a href="/auth/logout">Cerrar sesión</a>
+    <% } else { %>
+    <span>Bienvenida, invitado</span>
+    <a href="/auth/login">Iniciar sesión</a>
+    <% } %>
+  </nav>
+</header>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Confirmación QR - Huellitas con Causa</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <%- include("partials/header", { usuario, rol }) %>
+
+    <div class="container">
+      <h2>🐾 Confirmación de compra</h2>
+
+      <div class="detalle-compra">
+        <p><strong>Mascota:</strong> <%= mascota.nombreMascota %></p>
+        <p><strong>Dueño:</strong> <%= mascota.nombreDueno %></p>
+        <p><strong>Teléfono:</strong> <%= mascota.telefonoDueno %></p>
+        <% if (mascota.direccionDueno) { %>
+        <p><strong>Dirección:</strong> <%= mascota.direccionDueno %></p>
+        <% } %>
+        <p><strong>Talla:</strong> <%= mascota.talla %></p>
+        <p><strong>Precio:</strong> $<%= mascota.precio %> MXN</p>
+        <p><strong>Fecha:</strong> <%= mascota.fecha.toLocaleDateString() %></p>
+      </div>
+
+      <p class="mensaje-bonito">
+        🎉 ¡Gracias por tu compra! Tu apoyo ayuda a que
+        <strong>Huellitas con Causa</strong> siga creciendo 💙
+      </p>
+    </div>
+
+    <%- include("partials/footer") %>
+  </body>
+</html>

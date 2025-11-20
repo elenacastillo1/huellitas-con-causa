@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Registro - Huellitas con Causa</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <%- include("../partials/header", { usuario, rol }) %>
+
+    <div class="container">
+      <h2>Crear cuenta</h2>
+
+      <form action="/auth/register" method="POST" class="form-main">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" id="nombre" required />
+
+        <label for="email">Correo electrónico:</label>
+        <input type="email" name="email" id="email" required />
+
+        <label for="password">Contraseña:</label>
+        <input type="password" name="password" id="password" required />
+
+        <label for="rol">Rol:</label>
+        <select name="rol" id="rol">
+          <option value="cliente" selected>Cliente</option>
+          <option value="admin">Admin</option>
+        </select>
+
+        <button type="submit" class="btn-main">Registrar</button>
+      </form>
+
+      <p>¿Ya tienes cuenta? <a href="/auth/login">Inicia sesión aquí</a></p>
+    </div>
+  </body>
+</html>

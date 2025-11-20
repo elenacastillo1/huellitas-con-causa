@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Confirmación de compra - Huellitas con Causa</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <%- include("partials/header", { usuario, rol }) %>
+
+    <div class="container">
+      <h2>✅ Compra registrada</h2>
+
+      <!-- Datos del producto -->
+      <div class="producto-card">
+        <img
+          src="<%= producto.imagen %>"
+          alt="Imagen de <%= producto.nombre %>"
+          class="producto-img"
+        />
+        <h3><%= producto.nombre %></h3>
+        <p>Precio: $<%= producto.precio %> MXN</p>
+      </div>
+
+      <!-- Datos de la mascota -->
+      <div class="detalle-compra">
+        <p><strong>Mascota:</strong> <%= mascota.nombreMascota %></p>
+        <p><strong>Dueño:</strong> <%= mascota.nombreDueno %></p>
+        <p><strong>Teléfono:</strong> <%= mascota.telefonoDueno %></p>
+        <% if (mascota.direccionDueno) { %>
+        <p><strong>Dirección:</strong> <%= mascota.direccionDueno %></p>
+        <% } %>
+        <p><strong>ID único:</strong> <%= mascota._id %></p>
+      </div>
+
+      <!-- QR generado -->
+      <div class="qr-section">
+        <h3>📲 Código QR de tu compra</h3>
+        <img
+          src="/qr/<%= mascota._id %>.png"
+          alt="QR de la compra"
+          class="qr-img"
+        />
+      </div>
+
+      <!-- Enlace directo a WhatsApp -->
+      <div class="whatsapp-section">
+        <a href="<%= enlaceWhatsApp %>" target="_blank" class="btn-main">
+          📩 Enviar confirmación por WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <%- include("partials/footer") %>
+  </body>
+</html>
