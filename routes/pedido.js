@@ -7,7 +7,7 @@ router.get("/:id", async (req, res) => {
   try {
     const registro = await MascotaRegistrada.findById(req.params.id).lean();
     if (!registro) {
-      return res.status(404).send("Mascota no encontrada");
+      return res.status(404).render("404");
     }
 
     res.render("vistaQR", { mascota: registro });

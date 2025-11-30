@@ -2,10 +2,13 @@ const express = require("express");
 const session = require("express-session");
 const mongoose = require("mongoose");
 const path = require("path");
+
 require("dotenv").config();
 
 const app = express();
-app.use(express.static("public"));
+
+// ✅ Archivos estáticos
+app.use(express.static(path.join(__dirname, "public")));
 
 // ✅ Conexión a MongoDB Atlas o local
 mongoose
@@ -35,29 +38,28 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// ✅ Archivos estáticos
-app.use(express.static(path.join(__dirname, "public")));
-
 // ✅ Importar rutas
 const tiendaRoutes = require("./routes/tienda");
 const adminRoutes = require("./routes/admin");
 const usuarioRoutes = require("./routes/usuario");
 const authRoutes = require("./routes/auth");
+const pedidoRoutes = require("./routes/pedido"); // ✅ NUEVA RUTA PARA QR
 
 // ✅ Activar rutas
 app.use("/tienda", tiendaRoutes);
 app.use("/admin", adminRoutes);
 app.use("/usuario", usuarioRoutes);
 app.use("/auth", authRoutes);
+app.use("/pedido", pedidoRoutes); // ✅ ACTIVAR RUTA QR
 
 // ✅ Ruta principal
 app.get("/", (req, res) => {
   res.redirect("/tienda");
 });
 
-// ✅ Manejo de errores 404
+// ✅ Manejo de errores 404 con vista personalizada
 app.use((req, res) => {
-  res.status(404).send("Página no encontrada 🐾");
+  res.status(404).render("404"); // ✅ Usa views/404.ejs
 });
 
 // ✅ Iniciar servidor
