@@ -9,7 +9,7 @@ app.use(express.static("public"));
 
 // ✅ Conexión a MongoDB Atlas o local
 mongoose
-  .connect(process.env.MONGO_URI || "mongodb://localhost:27017/huellitasDB")
+  .connect(process.env.MONGODB_URI || "mongodb://localhost:27017/huellitasDB")
   .then(() => console.log("✅ Conectado a MongoDB"))
   .catch((err) => console.error("❌ Error de conexión a MongoDB:", err));
 
