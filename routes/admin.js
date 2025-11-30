@@ -26,7 +26,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// ✅ Confirmar pago manualmente
+// ✅ Confirmar pago y generar QR bonito
 router.post("/confirmar/:id", async (req, res) => {
   try {
     const registro = await MascotaRegistrada.findById(req.params.id);
@@ -34,10 +34,22 @@ router.post("/confirmar/:id", async (req, res) => {
       return res.status(404).send("Registro no encontrado");
     }
 
+    // Marcar como confirmado
     registro.confirmado = true;
+
+    // Generar URL pública con BASE_URL
+    const base =
+      process.env.BASE_URL || `http://localhost:${process.env.PORT || 3000}`;
+    registro.qrCode = `${base}/pedido/${registro._id}`;
+
     await registro.save();
 
-    res.redirect("/admin");
+    // Renderizar la vista bonita con datos y QR
+    res.render("confirmacionBonita", {
+      mascota: registro,
+      usuario: req.session.nombre || "admin",
+      rol: req.session.rol || "admin",
+    });
   } catch (err) {
     console.error("❌ Error al confirmar pago:", err);
     res.status(500).send("Error al confirmar el pago");

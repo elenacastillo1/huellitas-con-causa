@@ -28,6 +28,25 @@
         <strong>Huellitas con Causa</strong> siga creciendo 💙
       </p>
     </div>
+    <div class="qr-section">
+      <h3>Tu código QR</h3>
+      <% if (mascota.qrCode) { %>
+      <!-- Link directo -->
+      <p>
+        <a href="<%= mascota.qrCode %>" target="_blank"
+          ><%= mascota.qrCode %></a
+        >
+      </p>
+
+      <!-- Imagen QR escaneable -->
+      <img
+        src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=<%= mascota.qrCode %>"
+        alt="QR de tu pedido"
+      />
+      <% } else { %>
+      <p>El QR se generará cuando el admin confirme tu pago.</p>
+      <% } %>
+    </div>
 
     <%- include("partials/footer") %>
   </body>
