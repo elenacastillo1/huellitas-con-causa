@@ -2,13 +2,14 @@ const express = require("express");
 const session = require("express-session");
 const mongoose = require("mongoose");
 const path = require("path");
+require("dotenv").config();
 
 const app = express();
 app.use(express.static("public"));
 
-// ✅ Conexión a MongoDB
+// ✅ Conexión a MongoDB Atlas o local
 mongoose
-  .connect("mongodb://localhost:27017/huellitasDB")
+  .connect(process.env.MONGO_URI || "mongodb://localhost:27017/huellitasDB")
   .then(() => console.log("✅ Conectado a MongoDB"))
   .catch((err) => console.error("❌ Error de conexión a MongoDB:", err));
 
