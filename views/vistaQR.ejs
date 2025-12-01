@@ -1,6 +1,9 @@
+<% layout('layouts/layout') %> <% title = `QR de ${mascota.nombreMascota} |
+Huellitas con Causa` %> <% description = `Escanea este código para contactar al
+dueño de ${mascota.nombreMascota} y ayudarla a regresar con su familia.` %>
+
 <div class="qr-container">
   <img src="/images/logo.png" alt="Logo Huellitas con Causa" class="logo-qr" />
-
   <h2>🐾 Ayúdame a regresar con mi familia</h2>
 
   <p><strong>Mascota:</strong> <%= mascota.nombreMascota %></p>
@@ -11,7 +14,7 @@
   <div class="qr-section">
     <img
       src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=<%= mascota.qrCode %>"
-      alt="Código QR"
+      alt="Código QR de <%= mascota.nombreMascota %>"
     />
   </div>
 

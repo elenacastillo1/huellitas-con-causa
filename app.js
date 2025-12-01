@@ -2,11 +2,14 @@ const express = require("express");
 const session = require("express-session");
 const mongoose = require("mongoose");
 const path = require("path");
+const expressLayouts = require("express-ejs-layouts");
 
 require("dotenv").config();
 
 const app = express();
 
+app.use(expressLayouts);
+app.set("layout", "layouts/layout"); // ruta base del layout
 // ✅ Archivos estáticos
 app.use(express.static(path.join(__dirname, "public")));
 

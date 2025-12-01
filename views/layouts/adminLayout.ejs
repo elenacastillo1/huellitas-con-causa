@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panel Admin | Huellitas con Causa</title>
+    <link rel="stylesheet" href="/css/admin.css" />
+    <link rel="icon" href="/images/favicon.png" type="image/png" />
+  </head>
+  <body>
+    <header class="admin-header">
+      <img src="/images/logo.png" alt="Logo" class="logo-admin" />
+      <h1>Panel de Administración</h1>
+      <nav>
+        <a href="/admin">Inicio</a>
+        <a href="/admin/pedidos">Pedidos</a>
+        <a href="/admin/historial">Historial</a>
+        <a href="/logout">Cerrar sesión</a>
+      </nav>
+    </header>
+
+    <main><%- body %></main>
+
+    <footer class="admin-footer">
+      <p>Huellitas con Causa © 2025</p>
+    </footer>
+  </body>
+</html>

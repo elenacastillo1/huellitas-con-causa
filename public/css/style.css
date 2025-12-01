@@ -378,3 +378,40 @@ button:hover,
 .btn-volver:hover {
   background-color: #e65c50;
 }
+@media (max-width: 600px) {
+  .qr-container {
+    padding: 16px;
+    margin: 20px auto;
+    font-size: 1em;
+  }
+
+  .qr-container h2 {
+    font-size: 1.2em;
+    line-height: 1.4;
+  }
+
+  .qr-container p {
+    font-size: 1em;
+    margin: 6px 0;
+  }
+
+  .logo-qr {
+    width: 60px;
+    margin-bottom: 8px;
+  }
+
+  .qr-section img {
+    width: 160px;
+    height: 160px;
+  }
+
+  .btn-volver {
+    padding: 10px 16px;
+    font-size: 0.95em;
+  }
+
+  .mensaje-bonito {
+    font-size: 0.95em;
+    margin-top: 20px;
+  }
+}
