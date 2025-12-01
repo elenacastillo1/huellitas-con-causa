@@ -8,21 +8,18 @@ familias peludas.' %> <%- include("partials/header", { usuario, rol }) %>
   <div class="productos-grid">
     <% productos.forEach(p => { %>
     <div class="producto-card">
-      <!-- Imagen del producto -->
       <img
         src="<%= p.imagen || ('/images/chaleco-' + p.talla.toLowerCase() + '.png') %>"
         alt="Imagen de <%= p.nombre %>"
         class="producto-img"
       />
 
-      <!-- Nombre, precio y rango de kilos -->
       <h3><%= p.nombre %></h3>
       <p>Precio: $<%= p.precio %> MXN</p>
       <% if (p.kilos) { %>
       <p>Ideal para ≈ <%= p.kilos %></p>
       <% } %>
 
-      <!-- Botón de compra -->
       <form action="/tienda/comprar/<%= p._id %>" method="GET">
         <button type="submit" class="btn-main">Comprar</button>
       </form>
