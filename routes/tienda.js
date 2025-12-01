@@ -114,13 +114,19 @@ router.post("/comprar", async (req, res) => {
     await nuevoRegistro.save();
 
     // ✅ QR apunta a la vista escaneable
-    const qrData = `http://localhost:3000/tienda/confirmacion/${nuevoRegistro._id}`;
+    await nuevoRegistro.save();
+
+    // ✅ Generar QR con BASE_URL y guardar en MongoDB
+    const base = process.env.BASE_URL;
+    nuevoRegistro.qrCode = `${base}/pedido/${nuevoRegistro._id}`;
+    await nuevoRegistro.save(); // guardar el campo qrCode
+
     const qrPath = path.join(
       __dirname,
       "../public/qr",
       `${nuevoRegistro._id}.png`
     );
-    await QRCode.toFile(qrPath, qrData);
+    await QRCode.toFile(qrPath, nuevoRegistro.qrCode);
 
     // ✅ Enlace directo a WhatsApp
     const numeroDestino = "5218134198292";
