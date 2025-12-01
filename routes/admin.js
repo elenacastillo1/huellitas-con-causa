@@ -38,8 +38,7 @@ router.post("/confirmar/:id", async (req, res) => {
     registro.confirmado = true;
 
     // Generar URL pública con BASE_URL
-    const base =
-      process.env.BASE_URL || `http://localhost:${process.env.PORT || 3000}`;
+    const base = process.env.BASE_URL;
     registro.qrCode = `${base}/pedido/${registro._id}`;
 
     await registro.save();

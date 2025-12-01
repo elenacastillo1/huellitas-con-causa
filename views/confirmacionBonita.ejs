@@ -1,53 +1,34 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Confirmación QR - Huellitas con Causa</title>
-    <link rel="stylesheet" href="/css/style.css" />
-  </head>
-  <body>
-    <%- include("partials/header", { usuario, rol }) %>
+<div class="container">
+  <h2>📦 Confirmación de compra</h2>
 
-    <div class="container">
-      <h2>🐾 Confirmación de compra</h2>
+  <div class="card">
+    <h3><%= mascota.talla %></h3>
+    <p><strong>Precio:</strong> $<%= mascota.precio %> MXN</p>
+    <p><strong>Mascota:</strong> <%= mascota.nombreMascota %></p>
+    <p><strong>Dueño:</strong> <%= mascota.nombreDueno %></p>
+    <p><strong>Teléfono:</strong> <%= mascota.telefonoDueno %></p>
+    <p><strong>Dirección:</strong> <%= mascota.direccionDueno %></p>
+    <p><strong>Fecha:</strong> <%= mascota.fecha.toLocaleDateString() %></p>
+    <p><strong>ID único:</strong> <%= mascota._id %></p>
+  </div>
 
-      <div class="detalle-compra">
-        <p><strong>Mascota:</strong> <%= mascota.nombreMascota %></p>
-        <p><strong>Dueño:</strong> <%= mascota.nombreDueno %></p>
-        <p><strong>Teléfono:</strong> <%= mascota.telefonoDueno %></p>
-        <% if (mascota.direccionDueno) { %>
-        <p><strong>Dirección:</strong> <%= mascota.direccionDueno %></p>
-        <% } %>
-        <p><strong>Talla:</strong> <%= mascota.talla %></p>
-        <p><strong>Precio:</strong> $<%= mascota.precio %> MXN</p>
-        <p><strong>Fecha:</strong> <%= mascota.fecha.toLocaleDateString() %></p>
-      </div>
+  <div class="qr-section">
+    <h3>📲 Código QR de tu compra</h3>
+    <% if (mascota.qrCode) { %>
+    <p>
+      <a href="<%= mascota.qrCode %>" target="_blank"><%= mascota.qrCode %></a>
+    </p>
+    <img
+      src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=<%= mascota.qrCode %>"
+      alt="QR de tu pedido"
+    />
+    <% } else { %>
+    <p>El QR se generará cuando el admin confirme tu pago.</p>
+    <% } %>
+  </div>
 
-      <p class="mensaje-bonito">
-        🎉 ¡Gracias por tu compra! Tu apoyo ayuda a que
-        <strong>Huellitas con Causa</strong> siga creciendo 💙
-      </p>
-    </div>
-    <div class="qr-section">
-      <h3>Tu código QR</h3>
-      <% if (mascota.qrCode) { %>
-      <!-- Link directo -->
-      <p>
-        <a href="<%= mascota.qrCode %>" target="_blank"
-          ><%= mascota.qrCode %></a
-        >
-      </p>
-
-      <!-- Imagen QR escaneable -->
-      <img
-        src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=<%= mascota.qrCode %>"
-        alt="QR de tu pedido"
-      />
-      <% } else { %>
-      <p>El QR se generará cuando el admin confirme tu pago.</p>
-      <% } %>
-    </div>
-
-    <%- include("partials/footer") %>
-  </body>
-</html>
+  <p class="mensaje-bonito">
+    🎉 ¡Gracias por tu compra! Tu apoyo ayuda a que
+    <strong>Huellitas con Causa</strong> siga creciendo 💙
+  </p>
+</div>
