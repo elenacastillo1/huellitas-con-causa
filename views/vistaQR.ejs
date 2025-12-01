@@ -1,18 +1,24 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Ayúdame a regresar 🐾</title>
-    <link rel="stylesheet" href="/css/style.css" />
-  </head>
-  <body>
-    <div class="qr-container">
-      <h2>🐾 Ayúdame a regresar con mi familia</h2>
-      <p><strong>Dueño:</strong> <%= mascota.nombreDueno %></p>
-      <p><strong>Teléfono:</strong> <%= mascota.telefonoDueno %></p>
-      <% if (mascota.direccionDueno) { %>
-      <p><strong>Dirección:</strong> <%= mascota.direccionDueno %></p>
-      <% } %>
-    </div>
-  </body>
-</html>
+<div class="qr-container">
+  <img src="/images/logo.png" alt="Logo Huellitas con Causa" class="logo-qr" />
+
+  <h2>🐾 Ayúdame a regresar con mi familia</h2>
+
+  <p><strong>Mascota:</strong> <%= mascota.nombreMascota %></p>
+  <p><strong>Dueño:</strong> <%= mascota.nombreDueno %></p>
+  <p><strong>Teléfono:</strong> <%= mascota.telefonoDueno %></p>
+  <p><strong>Dirección:</strong> <%= mascota.direccionDueno %></p>
+
+  <div class="qr-section">
+    <img
+      src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=<%= mascota.qrCode %>"
+      alt="Código QR"
+    />
+  </div>
+
+  <a href="/tienda" class="btn-volver">🛍️ Ver productos disponibles</a>
+
+  <p class="mensaje-bonito">
+    Gracias por ayudar a que <strong>Huellitas con Causa</strong> siga creciendo
+    💙 Juntos damos abrigo, amor y esperanza a quienes más lo necesitan.
+  </p>
+</div>
