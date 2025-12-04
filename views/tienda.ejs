@@ -1,31 +1,42 @@
-<% layout('layouts/layout') %> <% title = 'Tienda | Huellitas con Causa' %>
-<%description = 'Explora chalecos con QR para mascotas. Cada compra ayuda a
-reunir familias peludas.' %>
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tienda - Huellitas con Causa</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <%- include("partials/header", { usuario, rol }) %>
 
-<div class="container">
-  <h2>📘 Productos disponibles</h2>
+    <div class="container">
+      <h2>📘 Productos disponibles</h2>
 
-  <div class="productos-grid">
-    <% productos.forEach(p => { %>
-    <div class="producto-card">
-      <img
-        src="<%= p.imagen || ('/images/chaleco-' + p.talla.toLowerCase() + '.png') %>"
-        alt="Imagen de <%= p.nombre %>"
-        class="producto-img"
-      />
+      <div class="productos-grid">
+        <% productos.forEach(p => { %>
+        <div class="producto-card">
+          <!-- Imagen del producto -->
+          <img
+            src="<%= p.imagen || ('/images/chaleco-' + p.talla.toLowerCase() + '.png') %>"
+            alt="Imagen de <%= p.nombre %>"
+            class="producto-img"
+          />
 
-      <h3><%= p.nombre %></h3>
-      <p>Precio: $<%= p.precio %> MXN</p>
-      <% if (p.kilos) { %>
-      <p>Ideal para ≈ <%= p.kilos %></p>
-      <% } %>
+          <!-- Nombre, precio y rango de kilos -->
+          <h3><%= p.nombre %></h3>
+          <p>Precio: $<%= p.precio %> MXN</p>
+          <% if (p.kilos) { %>
+          <p>Ideal para ≈ <%= p.kilos %></p>
+          <% } %>
 
-      <form action="/tienda/comprar/<%= p._id %>" method="GET">
-        <button type="submit" class="btn-main">Comprar</button>
-      </form>
+          <!-- Botón de compra -->
+          <form action="/tienda/comprar/<%= p._id %>" method="GET">
+            <button type="submit" class="btn-main">Comprar</button>
+          </form>
+        </div>
+        <% }) %>
+      </div>
     </div>
-    <% }) %>
-  </div>
-</div>
 
-<%- include("partials/footer") %>
+    <%- include("partials/footer") %>
+  </body>
+</html>

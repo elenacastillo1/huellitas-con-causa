@@ -1,32 +1,38 @@
-<% layout('layouts/layout') %> <% title = 'Registro | Huellitas con Causa' %>
-<%description = 'Crea tu cuenta en Huellitas con Causa para comprar productos
-solidarios y registrar tus mascotas.' %> <%- include("partials/header") %>
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Registro - Huellitas con Causa</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <%- include("partials/header") %>
 
-<div class="container">
-  <h2>📝 Registro de Usuario</h2>
+    <div class="container">
+      <h2>📝 Registro de Usuario</h2>
 
-  <% if (typeof error !== "undefined" && error) { %>
-  <p class="error"><%= error %></p>
-  <% } %> <% if (typeof success !== "undefined" && success) { %>
-  <p class="success"><%= success %></p>
-  <% } %>
+      <% if (typeof error !== "undefined" && error) { %>
+      <p class="error"><%= error %></p>
+      <% } %> <% if (typeof success !== "undefined" && success) { %>
+      <p class="success"><%= success %></p>
+      <% } %>
 
-  <form action="/auth/register" method="POST" class="formulario">
-    <label for="nombre">Nombre completo:</label>
-    <input type="text" name="nombre" value="<%= nombre || '' %>" required />
+      <form action="/auth/register" method="POST" class="formulario">
+        <label for="nombre">Nombre completo:</label>
+        <input type="text" name="nombre" value="<%= nombre || '' %>" required />
 
-    <label for="email">Correo electrónico:</label>
-    <input type="email" name="email" value="<%= email || '' %>" required />
+        <label for="email">Correo electrónico:</label>
+        <input type="email" name="email" value="<%= email || '' %>" required />
 
-    <label for="password">Contraseña:</label>
-    <input type="password" name="password" required />
+        <label for="password">Contraseña:</label>
+        <input type="password" name="password" required />
 
-    <button type="submit" class="btn-main">Registrarse</button>
-  </form>
+        <button type="submit" class="btn-main">Registrarse</button>
+      </form>
 
-  <p style="margin-top: 15px">
-    ¿Ya tienes cuenta? <a href="/auth/login">Inicia sesión aquí</a>
-  </p>
-</div>
-
-<%- include("partials/footer") %>
+      <p style="margin-top: 15px">
+        ¿Ya tienes cuenta? <a href="/auth/login">Inicia sesión aquí</a>
+      </p>
+    </div>
+  </body>
+</html>

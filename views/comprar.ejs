@@ -1,37 +1,42 @@
-<% layout('layouts/layout') %> <% title = 'Formulario de Compra | Huellitas con
-Causa' %> <% description = 'Completa el formulario para comprar un chaleco con
-QR y registrar a tu mascota.' %> <%- include("partials/header", { usuario, rol
-}) %>
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Formulario de Compra - Huellitas con Causa</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <%- include("partials/header", { usuario, rol }) %>
 
-<div class="formulario">
-  <h2>🛒 Formulario de Compra</h2>
+    <div class="formulario">
+      <h2>🛒 Formulario de Compra</h2>
 
-  <img
-    src="<%= producto.imagen || ('/images/chaleco-' + producto.talla.toLowerCase() + '.png') %>"
-    alt="Imagen de <%= producto.nombre %>"
-    class="producto-img"
-  />
+      <img
+        src="<%= producto.imagen || ('/images/chaleco-' + producto.talla.toLowerCase() + '.png') %>"
+        alt="Imagen de <%= producto.nombre %>"
+        class="producto-img"
+      />
 
-  <p>Comprar: <strong><%= producto.nombre %></strong></p>
-  <p>Precio: <strong>$<%= producto.precio %> MXN</strong></p>
+      <p>Comprar: <strong><%= producto.nombre %></strong></p>
+      <p>Precio: <strong>$<%= producto.precio %> MXN</strong></p>
 
-  <form action="/tienda/comprar" method="POST" class="form-main">
-    <input type="hidden" name="productoId" value="<%= producto._id %>" />
+      <form action="/tienda/comprar" method="POST" class="form-main">
+        <input type="hidden" name="productoId" value="<%= producto._id %>" />
 
-    <label for="nombreDueno">Nombre del dueño:</label>
-    <input type="text" name="nombreDueno" id="nombreDueno" required />
+        <label for="nombreDueno">Nombre del dueño:</label>
+        <input type="text" name="nombreDueno" id="nombreDueno" required />
 
-    <label for="telefonoDueno">Teléfono del dueño:</label>
-    <input type="text" name="telefonoDueno" id="telefonoDueno" required />
+        <label for="telefonoDueno">Teléfono del dueño:</label>
+        <input type="text" name="telefonoDueno" id="telefonoDueno" required />
 
-    <label for="direccionDueno">Dirección del dueño (opcional):</label>
-    <input type="text" name="direccionDueno" id="direccionDueno" />
+        <label for="direccionDueno">Dirección del dueño (opcional):</label>
+        <input type="text" name="direccionDueno" id="direccionDueno" />
 
-    <label for="nombreMascota">Nombre de la mascota:</label>
-    <input type="text" name="nombreMascota" id="nombreMascota" required />
+        <label for="nombreMascota">Nombre de la mascota:</label>
+        <input type="text" name="nombreMascota" id="nombreMascota" required />
 
-    <button type="submit" class="btn-main">Generar código QR</button>
-  </form>
-</div>
-
-<%- include("partials/footer") %>
+        <button type="submit" class="btn-main">Generar código QR</button>
+      </form>
+    </div>
+  </body>
+</html>

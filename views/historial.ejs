@@ -1,46 +1,52 @@
-<% layout('layouts/adminLayout') %> <% title = 'Historial | Huellitas con Causa'
-%> <% description = 'Consulta el historial de compras y registros de mascotas en
-Huellitas con Causa.' %> <%- include("partials/header", { usuario, rol }) %>
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Historial - Huellitas con Causa</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <%- include("partials/header", { usuario, rol }) %>
 
-<div class="container">
-  <h2>📜 Historial de compras</h2>
+    <div class="container">
+      <h2>📜 Historial de compras</h2>
 
-  <% if (registros.length === 0) { %>
-  <p>No hay registros aún.</p>
-  <% } else { %>
-  <table class="tabla-admin">
-    <thead>
-      <tr>
-        <th>Fecha</th>
-        <th>Mascota</th>
-        <th>Dueño</th>
-        <th>Teléfono</th>
-        <th>Talla</th>
-        <th>Precio</th>
-        <th>ID único</th>
-        <th>QR</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% registros.forEach(r => { %>
-      <tr>
-        <td><%= r.fecha.toLocaleDateString("es-MX") %></td>
-        <td><%= r.nombreMascota %></td>
-        <td><%= r.nombreDueno %></td>
-        <td><%= r.telefonoDueno %></td>
-        <td><%= r.talla %></td>
-        <td>$<%= r.precio %> MXN</td>
-        <td><%= r.idUnico %></td>
-        <td>
-          <a href="/qr/<%= r._id %>.png" download class="btn-main">
-            Descargar QR
-          </a>
-        </td>
-      </tr>
-      <% }) %>
-    </tbody>
-  </table>
-  <% } %>
-</div>
-
-<%- include("partials/footer") %>
+      <% if (registros.length === 0) { %>
+      <p>No hay registros aún.</p>
+      <% } else { %>
+      <table class="tabla-admin">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Mascota</th>
+            <th>Dueño</th>
+            <th>Teléfono</th>
+            <th>Talla</th>
+            <th>Precio</th>
+            <th>ID único</th>
+            <th>QR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% registros.forEach(r => { %>
+          <tr>
+            <td><%= r.fecha.toLocaleDateString("es-MX") %></td>
+            <td><%= r.nombreMascota %></td>
+            <td><%= r.nombreDueno %></td>
+            <td><%= r.telefonoDueno %></td>
+            <td><%= r.talla %></td>
+            <td>$<%= r.precio %> MXN</td>
+            <td><%= r.idUnico %></td>
+            <td>
+              <a href="/qr/<%= r._id %>.png" download class="btn-main"
+                >Descargar QR</a
+              >
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+      <% } %>
+    </div>
+  </body>
+</html>
